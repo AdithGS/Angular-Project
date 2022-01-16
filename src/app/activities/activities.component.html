@@ -1,0 +1,257 @@
+<div class="container">
+
+  <div class="row bg-light ">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 ">
+      <h3 class="text-center m-4  " style="  text-shadow:  1px 1px  #455A64;">Activity Logs</h3>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+
+
+  <div class="container mt-3">
+    <div class="row mb-3 mt-3">
+      <div class="col-4">
+        <button class="btn btn-success  m-2 " data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+        (click)="open(content)">Add Activity&nbsp; <i class='fas fa-plus' style='font-size:20px'></i>
+        </button>
+      </div>
+      <div class="col-4">
+        <div class="form-group form-inline">
+          <input class="form-control ml-2" type="text" placeholder="Search By Name"    />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="cntpos">Total Activities <span class="badge  bg-danger cntsize">{{cnt}}</span> </div>
+        <!-- <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+            Default checkbox
+          </label>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div class="row table-responsive ">
+    <div class="col-12 ">
+      <table class="table table-striped l">
+        <thead>
+          <tr class="tb-bg text-left ">
+            <th>SL NO</th>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>DATE</th>
+            <th>TYPE</th>
+         
+            <th colspace=3>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let act of activity_service.events | paginate: { itemsPerPage: count, currentPage: p } ;let i=index">
+            <th>{{i+1}}</th>
+            <td>{{act.id}}</td>
+            <td>{{act.actname}}</td>
+            <td>{{act.date}}</td>
+            <td>{{act.type}}</td>
+            <!-- <td>{{act.aFund}}</td>
+            <td>{{act.expense}}</td>
+            <td>{{(act.aFund)-(act.expense) | currency: 'INR' }}</td> -->
+            <td><button class="btn action-btn"><i class="fa fa-edit " style="color: #bb9a2c;" aria-hidden="true">
+                </i></button>
+              <button class="btn action-btn" (click)="detail(detail_view)" ><i class="fa fa-eye " style="color:rgb(15, 90, 134);" aria-hidden="true">
+                </i></button>
+              <button class="btn action-btn" (click)="open(role_modal)"><i class="fa fa-trash " style="color: #9c0000;" aria-hidden="true">
+                </i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-10">
+    <ng-template #content let-modal>
+      <div class="modal-header mdl_head">
+        <h3 class="modal-title text-light  " id="modal-basic-title">Update Activity</h3>
+        <button type="button" class=" btn " style="color:white;font-size: 20px;" aria-label="Close"
+          (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-light">
+        <div class="container">
+
+          <form action="" name="frm" class="abc">
+            <div class="row bg">
+              <div class="col-md-6">
+                <div>
+                  <label for="actCat" class="form-label">Category</label>
+                  <select class="form-select" aria-label="Default select example" id="catgtype">
+                    <option selected>Select Type</option>
+                    <option value="1">Cultural </option>
+                    <option value="2">Festival</option>
+                    <option value="3">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="activityname" class="form-label ">Activity Name</label>
+                  <input type="text" class="form-control" placeholder="Activity Name" id="actName">
+                </div>
+
+                <!-- <div>
+                  <label for="actDate" class="form-label"> Scheduled Date</label>
+                  <input type="date" class="form-control" placeholder="Activity Date" id="actDate">
+                </div> -->
+
+              </div>
+              <div class="col-md-6">
+                <div>
+                  <label for="activityId" class="form-label ">Activity ID</label>
+                  <input type="text" class="form-control" placeholder="Activity ID" id="actID">
+                </div>
+                <div>
+                  <label for="actDate" class="form-label"> Scheduled Date</label>
+                  <input type="date" class="form-control" placeholder="Activity Date" id="actDate">
+                </div>
+                <!-- <div>
+                  <label for="actCat" class="form-label">Category</label>
+                  <select class="form-select" aria-label="Default select example" id="catgtype">
+                    <option selected>Select Type</option>
+                    <option value="1">Cultural </option>
+                    <option value="2">Festival</option>
+                    <option value="3">Other</option>
+                  </select>
+                </div> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div>
+                  <label for="remarks">Remarks</label>
+                  <textarea class="form-control" placeholder="Remarks" id="remarks" style="height: 100px"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center pt-2">
+                <button type="submit" class="btn btn-secondary" (click)="save()" (click)="false">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+
+
+         <!--delete confirm modal-->          <!--delete confirm modal-->
+         <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <ng-template #role_modal let-modal>
+              <div class="modal-header mdl_head">
+                <h4 class="modal-title " id="modal-title">Delete Activity?</h4>
+                <button type="button" class="btn" aria-describedby="modal-title" style="color:white;font-size: 30px;"
+                  (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body bg-light">
+                <div class="container">
+                  <form action="" name="frm" class="abc">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="modal-body">
+                              <p><strong>Are you sure you want to delete this activity?</strong></p>
+                              <p>All information associated to this activity will be permanently deleted.
+                                <span class="text-danger">This operation can not be undone.</span>
+                              </p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-secondary"
+                                (click)="modal.dismiss('cancel click')">Cancel</button>
+                              <button type="button" class="btn btn-danger"
+                                (click)="modal.close('Ok click');deleteAct()">Ok</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+
+
+    <!--delete confirm modal ends-->      <!--delete confirm modal ends-->
+
+
+    <!--detail view of activity-->
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ng-template #detail_view let-modal>
+            <div class="modal-header mdl_head">
+              <h4 class="modal-title " id="modal-basic-title">Detail View</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                  
+                      <mat-tab-group>
+                        <mat-tab label="Basic Info">
+                          <div class="dt-label">ID <span class="dt">{{activity_service.events[0].id}}</span></div>
+                          <div class="dt-label">Name <span class="dt">{{activity_service.events[0].actname}}</span></div>
+                          <div class="dt-label">Type<span class="dt"></span> </div>
+                          <div class="dt-label">Date <span class="dt">{{activity_service.events[0].date}}</span></div>
+                          <div class="dt-label">Status <span class="dt">{{activity_service.events[0].status}}</span> </div>
+                        </mat-tab>
+                        <mat-tab label="More">
+                          <div class="dt-label">Remarks<span class="dt">{{activity_service.events[0].remarks}}</span></div>
+                          <div class="dt-label">Funds Allocated <span class="dt">{{activity_service.events[0].aFund}}</span></div>
+                          <div class="dt-label">Funds Used  <span class="dt">{{activity_service.events[0].expense}}</span></div>
+                          <div class="dt-label">Total Sum  <span class="dt"> </span></div>
+                        </mat-tab>
+  
+                      </mat-tab-group>
+  
+                  
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            </div>
+          </ng-template>
+          
+        </div>
+      </div>
+    </div>

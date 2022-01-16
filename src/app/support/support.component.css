@@ -1,0 +1,32 @@
+span{
+    background-color: #546E7A;
+   font-size: 20px;
+
+   border-radius: 30px;
+   padding: 10px;
+   color: #ECEFF1;
+}
+.cmnt{
+    margin: 10px;
+}
+.frm-bg{
+    /* background-color: #E8F5E9; */
+    border-radius: 15px;
+    background-color: #546E7A;
+}
+
+.btncolor{
+    color: #263238;
+  
+    background-color: #ECEFF1;
+}
+.l{
+    box-shadow: 0 20px 20px 0 #dae1e6 ;
+    padding: 5px;
+  
+}
+.tb-bg{
+    background-color: #455A64;
+    color: #fffafa;
+    
+}

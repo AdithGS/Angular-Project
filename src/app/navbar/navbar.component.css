@@ -1,0 +1,61 @@
+.bg-color{
+    background-color:#37474F;
+}
+.block {
+    height:100px;
+    width:200px;
+    text-align:right;
+}
+.right {
+    margin:auto 0 auto auto;
+    padding-top: 35px;
+ 
+}
+.prfl{
+   
+    padding-top: 30px;
+   
+    font-size: 30px;
+     color:#779daa;
+}
+.logo{
+    width: 130px;
+    height: 80px;
+    padding-left: 25px;
+    padding-top: 7px;
+    margin: 15px;
+    
+}
+.icon{
+    color: #CFD8DC;
+}
+.notf{
+float: right;
+   padding-top: 30px;
+    font-size: 30px;
+    color:#779daa
+}
+.notf_text{
+    font-size: 13px;
+   
+
+}
+.drpdwn{
+    float: right;
+
+}
+
+
+
+
+/***New Navbar***/
+/* .bg-color{
+    background-color:#37474F;
+}
+
+.logo{
+    
+    margin-left: 35px;
+    
+    
+} */

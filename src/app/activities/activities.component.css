@@ -1,0 +1,55 @@
+table {
+    cursor: pointer;
+}
+.cntsize{
+    font-size: 18px;
+}
+/* .tb-bg{
+    background-color: #006064;
+}
+.txt-col{
+    color: #B2DFDB;
+}
+.bal-bg{
+    background-color: #4DB6AC;
+} */
+.tb-bg {
+    background-color: #455A64;
+    color: #fffafa;
+
+}
+
+.l {
+    box-shadow: 0 20px 20px 0 #dae1e6;
+    padding: 15px;
+}
+
+.action-btn {
+    font-size: 22px;
+
+}
+
+.mdl_head {
+    background-color: #37474F;
+    color: white;
+
+}
+
+.cntpos {
+    text-align: center;
+    color: #37474F;
+
+}
+.dt-label{
+    color: #00695C;
+    font-size: 18px;
+    padding: 3px;
+    margin: 5px;
+    
+}
+.dt{
+    color: #000000;
+
+    padding-left: 20px;
+    
+}

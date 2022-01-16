@@ -1,0 +1,107 @@
+<div class="container pt-3 pb-5 ">
+    <mat-tab-group>
+        <mat-tab label="Request Support">
+            <div class="row">
+                <div class="col-12 text-center mt-2">
+                    <p class="mt-3"><span><i class="fa fa-envelope fa-1x icon"
+                                aria-hidden="true"></i>&nbsp;support@frugalscientific.com</span></p>
+                    <!-- <i class="fa fa-phone fa-1x icon">
+                            aria-hidden="true">&nbsp;</i> 0496-2537265&nbsp;<i class="fa fa-mobile fa-1x icon"
+                            aria-hidden="true">&nbsp;</i> 8156903134 -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 m-3">
+                    <h1>Help Request</h1>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="container mb-4">
+                <div class="row frm-bg">
+                    <div class="col-2"></div>
+                    <div class="col-8 m-3">
+                        <h4 class="pb-3 " style="color: #ECEFF1;">What can we help you with today !</h4>
+                        <div class="row">
+                            <form action="" name="frm" class="supportForm">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Default select example" id="supportType">
+                                            <option selected>Select Your Complaint</option>
+                                            <option value="1">Payment Error</option>
+                                            <option value="2">Subscription Failure</option>
+                                            <option value="3">Membership Addition</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    </div>
+                                    <!-- <div class="col">
+                                        <input type="date" class="form-control">
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="exampleFormControlTextarea1" style="color: #ECEFF1;"
+                                    class="form-label pt-2">Other:</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="pt-3 text-center">
+                                <button type="submit" style="font-size: 20px;font-weight: bold;"
+                                    class="btn btncolor">Submit</button>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Support Ticket History">
+            <div class="row">
+                <div class="col-6">
+                    <div class="m-3">
+                        <h2>All Support Tickets</h2>
+                        <small id="supporttickets" class="form-text text-muted">
+                            List Of Total Tickets Opened
+                        </small>
+                    </div>
+
+                </div>
+                <div class="col-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <table class="table table-striped l table-hover">
+                        <thead>
+                            <tr class="tb-bg">
+                                <th scope="col">#</th>
+                                <th scope="col">SUBJECT</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">DATE</th>
+                                <!-- <th scope="col">DATE</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let req of spt.tickets;let i=index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{req.subject}}</td>
+                                <td >{{req.status}}</td>
+                                <!-- <td [ngClass]="{ low: val >= 0 && val <=5, medium: val > 5 && val <= 10, high: val > 10}">
+                                    {{ val }}
+                                  </td> -->
+                                <td [ngClass]="{}"></td>
+                                <!-- <td>{{req.date}}</td> -->
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </mat-tab>
+    </mat-tab-group>
+</div>

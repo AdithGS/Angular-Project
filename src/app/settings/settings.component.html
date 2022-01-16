@@ -1,0 +1,103 @@
+<div class="container pt-3 pb-5">
+
+    <mat-tab-group>
+        <mat-tab label="Role Management">
+            <div class="container mt-3">
+                <div class="row text-center pt-3 pb-4">
+                    <div class="col-12">
+                        <h1 style="color: #263238;">Add New Roles</h1>
+                    </div>
+                </div>
+                <div class="row frmstyle ">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 p-4 m-2 ">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <form name="frm" class="roleform">
+                                    <div class="form-group" style="margin-bottom: 10px;">
+                                        <label class="lcolor" for="Title">Enter New Role</label>
+                                        <input type="text" class="form-control" id="designation"
+                                            aria-describedby="designation" placeholder="New Role">
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 10px;">
+                                        <label class="lcolor" for="designation remarks">Remarks</label>
+                                        <input type="text" class="form-control" id="remarks"
+                                            placeholder="Designation Remarks">
+                                    </div>
+                                    <div class="form-group text-center pt-3">
+
+                                        <button type="submit" class="btn btncolor" (click)="save()"
+                                            (click)="false">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <h5 style="text-align: center;padding-top: 20px;color: #ECEFF1;font-weight: 500;">
+                                        Listed Roles</h5>
+                                </div>
+                                <div class="block center">
+                                    <li class="li-style" *ngFor="let role of member.role">{{role.designation}}</li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Fee Management">
+            <div class="container mt-3">
+                <div class="row text-center pt-3 pb-4">
+                    <div class="col-12">
+                        <h1 style="color: #263238;">Add Fee Types</h1>
+                    </div>
+                </div>
+                <div class="row frmstyle ">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 p-4 m-2 ">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <form name="form" class="fee_form">
+                                    <div class="form-group" style="margin-bottom: 10px;">
+                                        <label class="lcolor" for="Title">Enter Fee Type</label>
+                                        <input type="text" class="form-control" id="feetype"
+                                             placeholder="Fee Type">
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 10px;">
+                                        <label class="lcolor" for="remarks">Remarks</label>
+                                        <input type="text" class="form-control" id="remarks"
+                                            placeholder="Fee Remarks">
+                                    </div>
+                                    <div class="form-group text-center pt-3">
+
+                                        <button type="submit" class="btn btncolor" (click)="savefee()"
+                                            (click)="false">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <h5 style="text-align: center;padding-top: 20px;color: #ECEFF1;font-weight: 500;">
+                                        Listed Fee Types</h5>
+                                </div>
+                                <div  class="block center">
+                                    <li class="li-style" *ngFor="let fee of fee.feetype">{{fee.ftype}}</li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+
+                </div>
+            </div>
+        </mat-tab>
+
+    </mat-tab-group>
+
+
+
+</div>

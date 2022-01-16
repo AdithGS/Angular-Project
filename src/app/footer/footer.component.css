@@ -1,0 +1,36 @@
+
+  
+  #footer {
+  /* position:absolute; */
+    bottom:0;
+    height:60px;  
+    background: #37474F;
+  line-height: 50px;
+    color: white;
+    margin-top: auto;
+ }
+ h6{
+   padding-top: 18px;
+ }
+
+ .ftr {
+  display: flex;
+  flex-direction: column;
+  min-height: 18vh;;
+}
+
+
+
+
+/******footer*******/
+/* .wrapper {
+  min-height: auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.page-footer {
+  background-color: rgb(75, 70, 74);
+  color: #fff;
+  padding: 20px;
+} */
+

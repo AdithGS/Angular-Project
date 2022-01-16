@@ -1,0 +1,158 @@
+<div class="container">
+    <div class="container">
+        <div class="row bg-light ">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6 ">
+                <h3 class="text-center m-4  " style="  text-shadow:  1px 1px  #455A64;">FEE PAYMENTS</h3>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row m-3">
+            <div class="col-md-4 ">
+
+                <div class="row m-3">
+                    <div class="col-2"></div>
+                    <div class="col-10 ">
+                       <button (click)="open(content)" class="btn btn-success"> New &nbsp;<i class="fas fa-plus "></i></button>
+                        <!-- <button (click)="open(content)"><i class="fas fa-list-ul wallet "></i>Add</button> -->
+                    </div>
+
+
+                    <!-- <div class="col-md-4"> </div>
+                    <div class="col-md-4">
+
+                    </div> -->
+                </div>
+            </div>
+
+
+            <div class="col-md-4"> </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <table class="table table-striped l ">
+                    <thead>
+                        <tr class="tb-bg">
+                            <th>SL NO</th>
+                            <th>MEMBERS NAME</th>
+                            <th> FEE TYPE</th>
+                            <th> AMOUNT</th>
+                            <th>REMARKS</th>
+                            <!-- <th>Action</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let mem of account.accounts | paginate: { itemsPerPage: count, currentPage: p };let i=index">
+
+                            <td>{{i+1}}</td>
+                            <td>{{mem.member}}</td>
+                            <td>{{mem.feetype}}</td>
+                            <td>{{mem.feeamnt | currency:'INR':'symbol' }}</td>
+                            <td>{{mem.remarks}}</td>
+                            <!-- <td><button (click)="open(content)"><i class="fas fa-list-ul wallet "></i></button></td> -->
+
+                        </tr>
+
+                        <!-- <ng-container *ngFor="let mem of member.user | paginate: { itemsPerPage: count, currentPage: p };">  
+                            <tr *ngIf="!(mem.status)">
+                                
+                                <td>{{mem.idNum}}</td>
+                                <td>{{mem.fname}} {{mem.lName}}</td>
+                                <td><button (click)="open(content)"><i class="fas fa-list-ul "></i></button></td>
+                            </tr>
+                          </ng-container>   -->
+
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <div class="text-center">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--Fee Type Modal-->
+<div class="container">
+    <div class="row  ">
+        <div class="col-12">
+            <ng-template #content let-modal>
+                <div class="modal-header mdl_head">
+                    <h4 class="modal-title" id="modal-basic-title">New Accounts</h4>
+                    <button type="button" class="close " aria-label="Close"
+                    style="color:white;font-size: 30px;font-size: 30px; background-color: #37474F;"
+                        (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="" name="frm" class="feetype ">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div>
+                                    <select class="form-select"  id="memberselect">
+                                        <option>Select Member </option>
+                                        <option *ngFor="let mem of member.user">
+                                            {{mem.fname}}
+                                        </option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <select class="form-select" id="feetypeSelect">
+                                        <option>Select Fee Type </option>
+                                        <option *ngFor="let fee of feetype.feetype">
+                                            {{fee.ftype}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="div">
+                                    <label for="feeremarks" class="form-label mt-2">Remarks</label>
+                                    <input name="feeremark" id="feeremark" class="form-control" placeholder="Remarks">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="fee" class="form-label mt-2">Fee Amount</label>
+                                <input type="text" class="form-control" id="feeamount" placeholder="Fee Amount">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer ">
+                        <div>
+                            <button type="button" class="btn btn-outline-dark" (click)="save()">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </ng-template>
+        </div>
+    </div>
+</div>

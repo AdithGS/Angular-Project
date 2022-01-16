@@ -1,0 +1,475 @@
+<div class="container">
+  <!-- <div class="container"> -->
+    <div class="row bg-light ">
+   
+      <div class="col-12 text-center">
+        <h3 class=" m-4  " style="  text-shadow:  1px 1px  #455A64;">Membership List</h3>
+      </div>
+
+    </div>
+ 
+
+  <!-- <div class="container "> -->
+    <div class="row mt-3">
+      <div class="col-md-12 ">
+        <div class="row mb-3 mt-3">
+          <div class="col-4"><button class="btn btn-success  " data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+            (click)="open(content)">ADD MEMBER <i class="fa fa-user-plus fa-1x" aria-hidden="true">
+            </i></button></div>
+          <div class="col-4">
+            <div class="form-group form-inline">
+              <input class="form-control ml-2" type="text" placeholder="Search By Name" (keyup)="helo($event)" />
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="cntpos">Total Members <span class="badge  bg-danger cntsize">{{cnt}}</span> </div>
+            <!-- <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Default checkbox
+              </label>
+            </div> -->
+          </div>
+        </div>
+        
+        <div class="row table-responsive ">
+          <div class="col-12 ">
+            <table class="table table-striped l table-hover " style="overflow-x: scroll;">
+              <thead>
+                <tr class="text-left tb-bg " >
+                  <th>SL NO</th>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>MOBILE</th>
+                  <th>MEMBERSHIP </th>
+                  <th>DATE OF JOINING</th>
+                  <th>STATUS</th>
+                  <th colspan="4">ACTION</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="!searchData" >
+                <tr
+                  *ngFor="let usr of member_service.user | paginate: { itemsPerPage: count, currentPage: p }; let i = index ">
+                  <th> {{i+1}} </th>
+                  <td> {{usr.userid}} </td>
+                  <td> {{usr.fname}} {{usr.lName}} </td>
+                  <td> {{usr.mob}} </td>
+                  <td>{{usr.memtype}}</td>
+                  <td> {{usr.doj}} </td>
+                  <td *ngIf="usr.status; else elseBlock"><a class="badge bg-success  text-light">active</a></td>
+                  <ng-template #elseBlock>
+                    <td><a class="badge bg-danger l text-light ">inactive</a> </td>
+                  </ng-template>
+                  <td> <button class="btn action-btn" (click)="modal(detail_view,usr)"><i class="fa fa-eye "
+                        style="color:rgb(15, 90, 134);" aria-hidden="true">
+                      </i></button></td>
+                  <td><button class="btn action-btn" (click)="open(usr)"><i class="fa fa-edit " style="color: #bb9a2c;"
+                        aria-hidden="true">
+                      </i></button>
+                  </td>
+                  <td> <button class="btn action-btn" (click)="removeUser(confirm_view,i)"><i class="fa fa-trash "
+                        style="color: #9c0000;" aria-hidden="true">
+                      </i></button>
+
+                  </td>
+                  <td> <button class="btn action-btn" (click)="rolechange(role_modal,i)"><i
+                        class='fas fa-user-shield'></i></button>
+
+                  </td>
+
+                </tr>
+              </tbody>
+
+              <tbody *ngIf="searchData">
+                <tr>
+                  <!-- <th> {{i+1}} </th> -->
+                  <td> {{searchData?.id}} </td>
+                  <td> {{searchData?.fname}} {{searchData?.lName}} </td>
+                  <td> {{searchData?.mob}} </td>
+                  <td>platinum</td>
+                  <td> {{searchData?.doj}} </td>
+                  <td *ngIf="searchData.status; else elseBlock"><a class="badge bg-success  text-light">active</a></td>
+                  <ng-template #elseBlock>
+                    <td><a class="badge bg-danger  text-light ">inactive</a> </td>
+                  </ng-template>
+
+                  <td>
+                    <button class="btn action-btn" (click)="open(searchData)"><i class="fa fa-edit "
+                        style="color: #bb9a2c;">
+                      </i></button>
+                    <button class="btn action-btn" (click)="modal(detail_view,searchData)"><i class="fa fa-eye "
+                        style="color:rgb(15, 90, 134);">
+                      </i></button>
+
+                    <button class="btn action-btn"><i class="fa fa-trash " style="color: #9c0000;">
+                      </i></button>
+
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="text-center">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+
+      </div>
+
+    </div>
+  <!-- </div> -->
+</div>
+
+
+<!--membership registeration form-->
+
+<div class="row">
+  <!-- <div class="col-md-2"></div> -->
+  <div class="col-md-12">
+    <ng-template #content let-modal>
+      <div class="modal-header mdl_head">
+        <h3 class="modal-title text-light " id="modal-basic-title">Membership Registration</h3>
+        <button class=" btn " style="color:white;font-size: 20px;" aria-label="Close"
+          (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-light">
+
+
+        <div class="container">
+
+          <form action="" name="frm" class="abc">
+            <div class="row bg">
+              <div class="col-md-6">
+                <div>
+                  <label for="fname" class="form-label ">First Name</label>
+                  <input type="text" class="form-control" placeholder="First Name" id="fname" required>
+                </div>
+                <div>
+                  <label for="mobile" class="form-label">Mobile </label>
+                  <input type="text" class="form-control" placeholder="Mobile Number" id="mob required">
+                </div>
+
+
+                <div>
+                  <label for="gender" class="form-label">Gender</label>
+                  <div>
+                    <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1">
+                    <label class="form-check-label " for="flexRadioDefault1">
+                      Male
+                    </label>
+                    <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault2" required>
+                    <label class="form-check-label " for="flexRadioDefault2">
+                      Female
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="fname" class="form-label">ID Type</label>
+                  <select class="form-select" aria-label="Default select example" id="idtype">
+                    <option selected>Select Your ID</option>
+                    <option value="1">Aadhar</option>
+                    <option value="2">Passport</option>
+                    <option value="3">Driving License</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="idNum" class="form-label">ID Number</label>
+                  <input type="text" class="form-control" placeholder="ID Number" id="idNum">
+                </div>
+
+                <div>
+                  <label for="address">Address</label>
+                  <textarea class="form-control" placeholder=" Your Address" id="address" style="height: 130px"
+                    required></textarea>
+                </div>
+
+
+
+              </div>
+              <div class="col-md-6">
+                <div>
+                  <label for="lName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" placeholder="Last Name" id="lName">
+                </div>
+
+                <div>
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" placeholder="Your Email" id="email">
+                </div>
+
+                <div>
+                  <label for="dob" class="form-label">DOB</label>
+                  <input type="date" class="form-control" placeholder="Date Of Birth" id="dob" required>
+                </div>
+
+                <div>
+                  <label for="blood" class="form-label">Blood Group</label>
+                  <input type="text" class="form-control" placeholder="Blood Group" id="blood">
+                </div>
+
+                <div>
+                  <label for="fname" class="form-label">Membership Type</label>
+                  <select class="form-select" aria-label="Default select example" id="memtype">
+                    <option selected>Select Membership</option>
+                    <option value="1">Platinum </option>
+                    <option value="2">Gold </option>
+                    <option value="3">Silver</option>
+                  </select>
+
+                </div>
+                <div>
+                  <label for="doj" class="form-label">Date Of Joining</label>
+                  <input type="date" class="form-control" id="doj">
+                </div>
+                <div>
+                  <label for="photo" class="form-label">Photo</label>
+                  <input type="file" class="form-control" id="photo">
+                </div>
+
+
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div>
+                  <label for="remarks">Remarks</label>
+                  <textarea class="form-control" placeholder="Remarks" id="remarks" style="height: 100px"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <button type="submit" (click)=save() class="btn mdl_head" (click)="false">Save</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </ng-template>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="row">
+  <!-- <div class="col-md-2"></div> -->
+  <div class="col-md-12">
+    <ng-template #detail_view let-modal>
+      <div class="modal-header  mdl_head">
+        <h4 class="modal-title text-light" id="detailview">{{detail?.fname}} {{detail?.lName}}</h4>
+        <button class=" btn " style="color:white;font-size: 30px;" aria-label="Close"
+          (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-light">
+
+
+        <div class="container">
+
+          <form action="" name="frm" class="abc">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="container m-3">
+                    <div class=" mb-2">
+                      <img class="rounded-circle dp" src="{{detail?.photo}}" />
+                    </div>
+                    <div class="mb-3">
+                      <div>
+                        <label for="m_name" class="dt-label">Name <span class="dt">{{detail?.fname}}
+                            {{detail?.lName}}</span></label>
+                      </div>
+                      <div>
+                        <label for="m_name" class="dt-label">Membership <span
+                            class="dt">{{detail?.lName}}</span></label>
+                      </div>
+                      <div>
+                        <label for="m_name" class="dt-label">Joined Date <span class="dt">{{detail?.doj}}</span></label>
+                      </div>
+
+                    </div>
+                    <!-- <div class="mb-3">
+                      <button class="btn btn-success text-center ">Send Email</button>
+                    </div>
+                    <div class=" mb-3">
+                      <li class="social"><i class="fa fa-facebook fa-1x" aria-hidden="true"> </i></li>
+                      <li class="social"><i class="fa fa-twitter fa-1x" aria-hidden="true"> </i></li>
+                      <li class="social"><i class="fa fa-google fa-1x" aria-hidden="true"> </i></li>
+                      <li class="social"><i class="fa fa-instagram fa-1x" aria-hidden="true"> </i></li>
+                    </div>
+         -->
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                    <mat-tab-group>
+                      <mat-tab label="Basic Info">
+                        <div class="dt-label">ID Type <span class="dt">{{detail?.lName}}</span></div>
+                        <div class="dt-label">ID Number <span class="dt">{{detail?.id}}</span></div>
+                        <div class="dt-label">Membership Type </div>
+                        <div class="dt-label"> Date Of Birth <span class="dt">{{detail?.dob}}</span></div>
+                        <div class="dt-label"> Blood Group <span class="dt">{{detail?.blood}}</span> </div>
+                      </mat-tab>
+                      <mat-tab label="Contacts">
+                        <div class="dt-label">Mobile<span class="dt">{{detail?.mob}}</span></div>
+                        <div class="dt-label">Email <span class="dt">{{detail?.email}}</span></div>
+                        <div class="dt-label">Address <span class="dt">{{detail?.address}}</span></div>
+                      </mat-tab>
+
+                    </mat-tab-group>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </ng-template>
+  </div>
+</div>
+
+<!-- .........................****************? -->
+
+
+
+<div class="row">
+  <!-- <div class="col-md-2"></div> -->
+  <div class="col-md-12">
+    <ng-template #confirm_view let-modal>
+      <div class="modal-header mdl_head">
+        <h4 class="modal-title " id="modal-title">Delete Profile</h4>
+        <button type="button" class="btn" aria-describedby="modal-title" style="color:white;font-size: 30px;"
+          (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-light">
+
+
+        <div class="container">
+
+          <form action="" name="frm" class="abc">
+            <div class="container">
+              <div class="row">
+
+
+                <div class="col-md-12">
+                  <div class="row">
+
+                    <div class="modal-body">
+                      <p><strong>Are you sure you want to delete profile?</strong></p>
+                      <p>All information associated to this user profile will be permanently deleted.
+                        <span class="text-danger">This operation can not be undone.</span>
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary"
+                        (click)="modal.dismiss('cancel click')">Cancel</button>
+                      <button type="button" class="btn btn-danger"
+                        (click)="modal.close('Ok click');removeUser1()">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </ng-template>
+  </div>
+</div>
+
+
+
+
+
+
+<!--Role Modal-->
+<!--Role Modal-->
+
+<div class="row">
+  <!-- <div class="col-md-2"></div> -->
+  <div class="col-md-12">
+    <ng-template #role_modal let-modal>
+      <div class="modal-header mdl_head">
+        <h4 class="modal-title " id="modal-title">Assign Roles</h4>
+        <button type="button" class="btn" aria-describedby="modal-title" style="color:white;font-size: 30px;"
+          (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-light">
+
+
+        <div class="container">
+
+          <form  name="frm" class="abc">
+            <div class="container">
+              <div class="row">
+
+
+                <div class="col-md-12">
+                  <div class="row">
+
+                    <div class="modal-body">
+
+                      <form action="" class="roleAssign">
+
+                        <div *ngFor="let role of role.role" class="text-right">
+                          
+                          <input type="radio" name="member_role" [value]="role.designation" id="roleselect">&nbsp;{{role.designation}}
+                        </div>
+
+                        <!-- <div>
+                          <ul class="list-group">
+                                <li class="list-group-item"  *ngFor="let role of role.role">
+                                  <input type="radio"  name="list_name"> {{role.designation}}
+                                 
+                                  
+                                </li>
+                          </ul>
+                        </div> -->
+
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary"
+                        (click)="modal.dismiss('cancel click')">Cancel</button>
+                      <button type="button" class="btn btn-danger"
+                        (click)="modal.close('Ok click');rolemanage()">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </ng-template>
+  </div>
+</div>

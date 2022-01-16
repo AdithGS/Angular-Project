@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-8">
+        <img src="assets/sign_up.jpg" style="background-size: cover;" alt="">
+    </div>
+    <div class="col-md-4 bg">
+        <div class="container ">
+         
+            <form class="landing" name="frm">
+                <div>
+                    <img src="assets/brandlogo (2).png" class="brandlogo" alt="">
+                    <h6 class="text-muted">Please sign-in to your account.</h6>
+                </div>
+                <div>
+                    <h3 style=" color: rgb(40, 90, 136);"><span>Log In</span></h3>
+                </div>
+                <div class="form-group pt-3">
+                  <label for="exampleInputEmail1" class="frm-txt">Email </label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                  <small id="emailHelp" class="form-text text-muted ">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group pt-3">
+                  <label for="exampleInputPassword1" class="frm-txt">Password  </label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                
+                
+                <div class="form-group pt-3 ">
+                    <small id="forgotpswd" class="fpswd ">Forgot <strong ><a >Password ?</a></strong></small>
+                    <button class="btn custom  btn-light btn-outline-success logbtn" (click)="signUp()"  type="submit">Log In</button>
+                    
+                  </div>
+                  <!-- <div class="form-group pt-3 ">
+                    <small>{{invalidcred}}</small>
+                  </div> -->
+                  
+              </form>
+        </div>
+
+      
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,33 @@
+.li-style{
+    list-style:square;
+    color:#ECEFF1;
+    margin-left: 25px;
+    font-weight: 500;
+}
+.frmstyle{
+    background-color:#546E7A;
+    border-radius: 30px;
+}
+.lcolor{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+.btncolor{
+    color: #263238;
+    font-weight: 500;
+    background-color: #ECEFF1;
+}
+.arrow{
+    font-size: 17px;
+}
+
+
+/**********/
+
+
+.block {
+    height:100px;
+    width:200px;
+    text-align:left;
+}
